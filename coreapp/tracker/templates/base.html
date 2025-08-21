@@ -1,0 +1,35 @@
+{% load static %}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
+    {% endblock %}
+    <title>Workout Tracker</title>
+
+</head>
+<body>
+    <header>
+        <h1>Workout Tracker</h1>
+        <nav class="navbar">
+            <div class="navbar-nav-center">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'workout' %}">Add Workout</a>
+                </li>
+                <li>
+                    <a href=>Logout</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

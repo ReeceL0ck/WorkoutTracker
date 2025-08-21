@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import WorkoutForm
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello This is where you can track")
+    return render(request, 'overview.html')
 
 def workout(request):
-    return HttpResponse("This is where you can make add a workout")
+    context ={}
+    context['form']= WorkoutForm()
+
+    return render(request, 'workout.html', context)

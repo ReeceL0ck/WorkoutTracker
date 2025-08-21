@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fb=3w-_(tf-(^^q^t57+1xw#n*-0kxez8wuqurw^9w9^bm_vx3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -34,7 +34,8 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'tracker.apps.TrackerConfig',
+    'tracker',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,9 +84,7 @@ DATABASES = {
         'USER':os.environ.get('USER'),
         'PASSWORD':os.environ.get('PASSWORD'),
         'HOST':os.environ.get('HOST'),
-        'PORT':os.environ.get('PORT','5432')
-
-
+        'PORT':os.environ.get('PORT','5432'),
     }
 }
 
@@ -123,7 +122,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1,0 +1,57 @@
+/* Add a black background color to the top navigation */
+h1 {
+    text-align: center;
+    color: #333;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+p {
+    font-size: 16px;
+    color: #333;
+    margin: 20px;
+    padding: 10px;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #77a5ef;
+    overflow: hidden;
+
+    
+}
+
+.navbar-nav {
+    list-style-type: none; /* to remove bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; 
+    justify-content: center; /* Center the items */
+
+    
+}
+
+.navbar-nav li {
+    margin: 0;
+    
+}
+
+.navbar-nav a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+
+/* Change the color of links on hover */
+.navbar-nav a:hover {
+    background-color: #568be1;
+}
