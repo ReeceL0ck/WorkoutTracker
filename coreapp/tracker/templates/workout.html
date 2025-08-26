@@ -1,9 +1,20 @@
 {%extends 'base.html' %}
+{% load static %}
 {% block content %}
-<p>Add New Workout</p>
-<form action = "" method = "post">
+<!--      -->
+<form action = "" method = "post" onsubmit="alert_completion()">
     {% csrf_token %}
-    {{form }}
-    <input type="submit" value=Submit>
+    <div class="form-container">
+        {{form.as_ul}}
+    
+
+    <input class="form-submit"  type="submit" value=Submit>
+    </div>
 </form>
-{% endblock %}
+<script>    
+    function alert_completion() {
+        alert("Workout added successfully!");
+    }
+</script>
+
+{% endblock %}  

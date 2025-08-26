@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Track your overall workouts and progress here.</p>
+<ul>
+    {%if Exercises %}
+        {% for excercise in Exercises %}
+
+            <li>{{ excercise.workout_date|date:"Y-m-d" }} - 
+                {{ excercise.name_of_exercise }} - 
+                {{ excercise.no_of_reps }} reps, 
+                {{ excercise.no_of_sets }} sets,
+                {{ excercise.weight }} kg
+                {% if excercise.notes %}
+                    - Notes: {{ excercise.notes }}
+                {% else %}
+                    -  No Notes
+                {% endif %}
+            </li>
+        {% endfor %}
+    {% else %}
+            No Excercises found!
+    {% endif %}
+    </ul>
+{% endblock %}

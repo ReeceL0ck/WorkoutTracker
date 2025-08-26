@@ -1,23 +1,43 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-class Workout(models.Model):
-    split_type   = models.CharField(max_length=200) # Upper/Lower, FullBody, Legs etc
-    workout_date = models.DateTimeField("Date of workout")
-    notes        = models.TextField(blank=True, help_text="Additional workout notes")
-    def __str__(self):
-        return f"{self.split_type()} - {self.workout_date.strftime('%Y-%m-%d')} - Notes : {self.notes}"
+EXERCISE_CHOICES = [
+    ('squat', 'Squat'),
+    ('deadlift', 'Deadlift'),
+    ('rdl', 'Romanian Deadlift (RDL)'),
+    ('benchpress', 'Bench Press'),
+    ('inclinebenchpress', 'Incline Bench Press'),
+    ('dumbellpress', 'Dumbell Press'),
+    ('inclinedumbellpress', 'Incline Dumbell Press'),
+    ('pullup', 'Pull Up'),
+    ('overheadpress', 'Overhead Press'),
+    ('lunge', 'Lunge'),
+    ('bicepcurl', 'Bicep Curl'),
+    ('tricepdip', 'Tricep Dip'),
+    ('triceppushdown', 'Tricep Pushdown'),
+    ('skullcrusher', 'Skull Crusher'),
+    ('legpress', 'Leg Press'),
+    ('lateralraise', 'Lateral Raise'),
+    ('latpulldown', 'Lat Pulldown'),
+    ('legcurl', 'Leg Curl'),
+    ('calfraise', 'Calf Raise'),
+    ('legextension', 'Leg Extension'),
+    ('stepup', 'Step Ups'),
+    ('hipabduction', 'Hip Abduction'),
+    ('kickbacks', 'Kickbacks'),
+    ('seatedrow', 'Seated Row'),
+    ('hipthrust', 'Hip Thrust'),
+    ('pecfly', 'Pec Fly'),
+    ('dumbellshoulderpress', 'Dumbell Shoulder Press'),
+    ('facepull', 'Face Pull'),
+
+]
+
     
 class Exercise(models.Model):
-    '''
-    Each Exercise is linked to a workout which is described above
-    '''
-    workout          = models.ForeignKey(
-                        Workout, 
-                        on_delete=models.CASCADE,
-                        related_name='exercises'
-                    )
-    name_of_exercise = models.CharField(max_length=200)
+    workout_date     = models.DateTimeField("Date of workout", default=None)
+    notes            = models.TextField(blank=True, help_text="Additional workout notes")
+    name_of_exercise = models.CharField(max_length=200,choices=EXERCISE_CHOICES)
     no_of_reps       = models.SmallIntegerField()
     no_of_sets       = models.SmallIntegerField()
     weight           = models.DecimalField(max_digits=5,decimal_places=2, help_text="Use KG")
@@ -29,5 +49,6 @@ class Exercise(models.Model):
                     )
     
     def __str__(self):
-        return f"{self.name_of_exercise} : {self.no_of_sets}x{self.no_of_reps}"
+        return f"{self.get_name_of_exercise_display()} : {self.no_of_sets}x{self.no_of_reps}"
+
 

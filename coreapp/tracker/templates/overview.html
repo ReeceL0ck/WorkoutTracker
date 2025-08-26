@@ -1,4 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>Track your overall workouts and progress here.</p>
+<!-- <p>Track your overall workouts and progress here.</p> -->
+    {% csrf_token %}
+    <form action = "" method = "post">
+        
+        {% csrf_token %}
+        <div class="form-container">
+            
+            {{form.as_ul}}
+        </div>
+    </form>
+<ul>
+    {%if Exercises %}
+        {% for excercise in Exercises %}
+             <div class="card">
+                <div class="container">
+                 <li>
+                         <h4 class="card-header">  {{ excercise.get_name_of_exercise_display }} -  {{ excercise.workout_date|date:"Y-m-d" }} </h4>
+                            <p class="p1">Number of Sets : {{ excercise.no_of_sets }} </p1>
+                            <p class="p1">Number of Reps : {{ excercise.no_of_reps }} </p1> 
+                            <p class="p1">Weight : {{ excercise.weight }} kg</p1>
+                            <p class="p1">RPE : {{ excercise.rpe_value }} </p1>
+                            <h4>Notes:   </h4>
+                            {% if excercise.notes %}
+                                <p class="p1">{{ excercise.notes }}</p1>
+                            {% else %}
+                                <p class="p1">-  No Notes</p1>
+                            {% endif %}</p1>
+                    </li>
+                </div>
+            </div> 
+        {% endfor %}
+    {% else %}
+            No Excercises found!
+    {% endif %}
+    </ul>
 {% endblock %}
