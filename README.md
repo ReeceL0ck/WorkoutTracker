@@ -17,4 +17,3 @@ There is a lot of issues and features still needed to be added ( Just a 1 man pr
 - Redo the models to link with 1 user so each user can track progress rather than 1 
 - Fix the graphing endpoint at /tracker/graphing and add it to overview
 - Create an actual homepage
-- 
