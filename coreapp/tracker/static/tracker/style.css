@@ -180,3 +180,55 @@ p {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     text-align: center;
 }
+
+.auth-form {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.auth-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+.auth-form input[type="submit"] {
+    background-color: #77a5ef;
+    color: #333;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-form input[type="submit"]:hover {
+    background-color: #5f93e1;
+}
+.signup {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+}

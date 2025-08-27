@@ -6,11 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
 </head>
-<div class="form-container">
+<body style="justify-content: center; align-items: center; display: flex;"></body>
+<div >
 <h2>Log In</h2>
-<form method="post">
+<form class="auth-form" method="post">
   {% csrf_token %}
   {{ form }}
-  <button class="form-submit" type="submit">Log In</button>
+  <button style="margin-top: 20px;" class="form-submit" type="submit">Log In</button>
+  <button class="signup" type="submit">
+    
+  </button>
 </form>
+<p style="text-align: center;">Don't have an account? <a    class="signup" href="{% url 'signup' %}">Signup</a></p>
 </div>
+</body>

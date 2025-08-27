@@ -3,11 +3,13 @@ from django.http import HttpResponse
 from .forms import ExerciseForm, ViewProgress
 from .models import Exercise
 import json
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='/accounts/login/')
 def index(request):
     return render(request, 'index.html')
 
+@login_required(login_url='/accounts/login/')
 def graphing(request):
     exercise_name = 'rdl' 
     try:
@@ -25,8 +27,9 @@ def graphing(request):
 
     datapoints = json.dumps(datapoints)
 
-    return render(request, 'graphing.html', context={'graph_data':datapoints, 'page_title':page_title})                        
-
+    return render(request, 'graphing.html', context={'graph_data':datapoints, 'page_title':page_title})    
+                    
+@login_required(login_url='/accounts/login/')
 def overview(request):
     context = {}
     context['form']= ViewProgress() 
@@ -49,6 +52,7 @@ def overview(request):
     
     return render(request, 'overview.html', context)
 
+@login_required(login_url='/accounts/login/')
 def workout(request):
     context ={}
     context['form']= ExerciseForm() 

@@ -1,4 +1,5 @@
- {% load static %}    
+{% load static %}    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
 </head>
- <div class="form-container">
-<h2>Sign up</h2>
-<form method="post">
+ <div>
+<body style="justify-content: center; align-items: center; display: flex;">
+<h2>Create an account</h2>
+<form class="auth-form" method="post">
   {% csrf_token %}
   {{ form }}
-  <button class="form-submit" type="submit">Sign Up</button>
+  <button style="margin-top: 10px;" class="form-submit" type="submit">Sign Up</button>
 </form>
+<p style="text-align: center;">Already have an account? <a    class="signup" href="{% url 'login' %}">Login</a></p>
 </div>
+</body>
