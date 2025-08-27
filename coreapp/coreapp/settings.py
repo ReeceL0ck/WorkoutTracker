@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'user_login',
     'tracker',
     'jazzmin',
     'django.contrib.admin',
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'coreapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "user_login" / "templates"] ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +71,8 @@ TEMPLATES = [
         },
     },
 ]
-
+LOGIN_REDIRECT_URL = "/tracker" 
+LOGOUT_REDIRECT_URL='/accounts/login'
 WSGI_APPLICATION = 'coreapp.wsgi.application'
 
 

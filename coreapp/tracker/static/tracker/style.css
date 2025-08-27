@@ -74,13 +74,25 @@ p {
     text-decoration: none;
     font-size: 17px;
 
+}
+.navbar-nav button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar-nav button:hover {
+  color: lightblue;
+  text-decoration: underline;
 
 }
 
-
 /* Change the color of links on hover */
 .navbar-nav a:hover {
-
+    color: lightblue;
     text-decoration: underline;
 }
 

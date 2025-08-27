@@ -27,7 +27,20 @@
                     <a href="{% url 'workout' %}">Add Workout</a>
                 </li>
                 <li>
-                    <a href=>Logout</a>
+                    <a> 
+                        {%if user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Log Out</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Login</button>
+                            </form>
+                        {% endif %} 
+
+                    </a>
                 </li>
             </ul>
         </nav>
