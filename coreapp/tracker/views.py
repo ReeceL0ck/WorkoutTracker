@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .forms import ExerciseForm, ViewProgress
 from .models import Exercise
 import json
@@ -11,21 +10,26 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def graphing(request):
-    exercise_name = 'rdl' 
+    exercise_name = 'lateralraise'  # Default exercise
+    datapoints = []
     try:
-        exercise = Exercise.objects.filter(name_of_exercise=exercise_name).filter(user=request.user).first()
-        page_title = f"{exercise.get_name_of_exercise_display()} Progress"
+        exercise = Exercise.objects.filter(user=request.user).filter(name_of_exercise=exercise_name).first()
+        if exercise:
+            page_title = f"Progress for {exercise.get_name_of_exercise_display()}"
+            datapoints = [
+                {"label": ex.name_of_exercise,
+                "x": ex.workout_date.strftime("%Y-%m-%d"),
+                "y": float(ex.weight),
+                "z": ex.no_of_reps} for ex in Exercise.objects.filter(name_of_exercise=f'{exercise_name}').order_by('workout_date')
+            ]
+            datapoints = json.dumps(datapoints)
+        else:
+            page_title = "No Data Found"
     except Exercise.DoesNotExist:
         page_title = "No Data Found"
-    datapoints = [
-        {"label": ex.name_of_exercise,
-         "x": ex.workout_date.strftime("%Y-%m-%d"),
-         "y": float(ex.weight),
-         "z": ex.no_of_reps} for ex in Exercise.objects.filter(name_of_exercise=f'{exercise_name}').order_by('workout_date')
-    ]
-    
 
-    datapoints = json.dumps(datapoints)
+
+
 
     return render(request, 'graphing.html', context={'graph_data':datapoints, 'page_title':page_title})    
                     

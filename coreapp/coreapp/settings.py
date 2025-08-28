@@ -55,6 +55,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+JAZZMIN_SETTINGS = {
+    "site_title": "WorkoutTracker Admin",
+    "site_header": "WorkoutTracker",
+    "site_brand": "WorkoutTracker",
+    "welcome_sign": "Welcome to the WorkoutTracker Admin Area", 
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "cerulean",
+}
+  
 
 ROOT_URLCONF = 'coreapp.urls'
 

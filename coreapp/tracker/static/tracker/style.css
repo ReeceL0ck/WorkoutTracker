@@ -194,6 +194,7 @@ p {
 }
 
 .auth-form input[type="text"],
+.auth-form input[type="email"],
 .auth-form input[type="password"] {
     width: 100%;
     padding: 10px;
