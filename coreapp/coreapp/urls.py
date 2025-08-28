@@ -11,6 +11,6 @@ urlpatterns = [
     path('U2FsdGVkX1ctHhTkRbj69RCkG9F7vA9Mbl5qOvnm2Y/', admin.site.urls),
     path("tracker/", include("tracker.urls"), name="home"),
     path('', include("user_login.urls")),
-    # path('', RedirectView.as_view(url='/accounts/login')),
+    # path('', RedirectView.as_view(url='tracker/')),
 
 ]

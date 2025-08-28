@@ -13,7 +13,7 @@ def index(request):
 def graphing(request):
     exercise_name = 'rdl' 
     try:
-        exercise = Exercise.objects.filter(name_of_exercise=exercise_name).first()
+        exercise = Exercise.objects.filter(name_of_exercise=exercise_name).filter(user=request.user).first()
         page_title = f"{exercise.get_name_of_exercise_display()} Progress"
     except Exercise.DoesNotExist:
         page_title = "No Data Found"
@@ -37,7 +37,7 @@ def overview(request):
         form = ViewProgress(request.POST)
         if form.is_valid():
             name_option = form.cleaned_data['name_option']
-            exercise_from_db = Exercise.objects.filter(name_of_exercise=name_option).order_by('workout_date')
+            exercise_from_db = Exercise.objects.filter(name_of_exercise=name_option).filter(user=request.user).order_by('workout_date')
             # print(exercise_from_db.values()[0]) # How to get indivual value from <DataSet>
             try:    
                 for i in range(len(exercise_from_db.values())):
@@ -60,24 +60,16 @@ def workout(request):
     if request.method == "POST":
         form = ExerciseForm(request.POST)
         if form.is_valid():
-
-            date = form.cleaned_data['date']
-            name_of_exercise = form.cleaned_data['name_of_exercise']
-            no_of_reps = form.cleaned_data['no_of_reps']
-            no_of_sets = form.cleaned_data['no_of_sets']
-            weight = form.cleaned_data['weight']
-            rpe_value = form.cleaned_data['rpe_value']
-            notes = form.cleaned_data['notes']
-            
             new_exercise = Exercise(
-                workout_date=date,
-                name_of_exercise=name_of_exercise,
-                no_of_reps=no_of_reps,
-                no_of_sets=no_of_sets,
-                weight=weight,
-                rpe_value=rpe_value,
-                notes=notes
+                workout_date = form.cleaned_data['date'],
+                name_of_exercise = form.cleaned_data['name_of_exercise'],
+                no_of_reps = form.cleaned_data['no_of_reps'],
+                no_of_sets = form.cleaned_data['no_of_sets'],
+                weight = form.cleaned_data['weight'],
+                rpe_value = form.cleaned_data['rpe_value'],
+                notes = form.cleaned_data['notes']
             )
+            new_exercise.user = request.user
             new_exercise.save()
 
             form = ExerciseForm() 

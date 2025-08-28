@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 EXERCISE_CHOICES = [
     ('squat', 'Squat'),
@@ -47,6 +48,7 @@ class Exercise(models.Model):
                         blank=True,
                         help_text="Rate of Perceived Exertion (1-10)"
                     )
+    user             = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     
     def __str__(self):
         return f"{self.get_name_of_exercise_display()} : {self.no_of_sets}x{self.no_of_reps}"
