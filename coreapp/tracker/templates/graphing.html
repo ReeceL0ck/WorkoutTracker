@@ -8,6 +8,8 @@
 
 <!-- Load d3.js and CSS -->
 <script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
 
 
@@ -21,11 +23,25 @@ const data = {{ graph_data | safe }};
 data.forEach(d => {
     d.date = new Date(d.x); 
     d.weight = d.y;  
-    d.no_of_reps = d.z;  
+    d.no_of_reps = d.z
+    
+    console.log(d.date, d.weight, d.no_of_reps);
+    console.log(d.y);
+    
 
 });
-
+function getMax(arr, prop) {
+    var max;
+    for (var i=0 ; i<arr.length ; i++) {
+        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+            max = arr[i];
+    }
+    return max;
+}
+var maxPpg = getMax(data, "y");
+console.log('Max weight:', maxPpg.y);
 console.log('Exercise data:', data); 
+
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 20, bottom: 40, left: 50},
@@ -55,7 +71,7 @@ svg.append("g")
 
 // Add Y axis
 var y = d3.scaleLinear()
-    .domain([0, 200])
+    .domain([0,  maxPpg.y + 10])
     .range([ height, 0]);
 svg.append("g")
     .call(d3.axisLeft(y));
@@ -64,6 +80,10 @@ svg.append("g")
 var z = d3.scaleLinear()
     .domain([0, 20])
     .range([3 , 40]);
+
+var myColor = d3.scaleOrdinal()
+    .domain([0,20])
+    .range(d3.schemeSet2);
 
 var tooltip = d3.select("#graph-container")
     .append("div")
@@ -77,7 +97,6 @@ var tooltip = d3.select("#graph-container")
 
 // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
 var showTooltip = function(d) {
-    
     tooltip
         .transition()
         .duration(200)
@@ -126,10 +145,11 @@ svg.append('g')
         .attr("cx", function (d) { return x(d.date); } )
         .attr("cy", function (d) { return y(d.weight); } )
         .attr("r", function (d) { return z(d.no_of_reps); } )
-        .style("fill", "#568be1")
+        // .style("fill", "#568be1")
+        .style("fill", function (d) { return myColor(d.no_of_reps); } )
         .style("cursor", "pointer")
-        // .style("opacity", "0.7")
-        // .attr("stroke", "black")
+        .style("opacity", "0.7")
+        .attr("stroke", "white")
     .on("mouseover", showTooltip )
     .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip )

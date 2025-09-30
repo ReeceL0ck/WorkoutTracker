@@ -10,7 +10,7 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def graphing(request):
-    exercise_name = 'lateralraise'  # Default exercise
+    exercise_name = 'rdl' # TODO - Replace with dynamic value from form
     datapoints = []
     try:
         exercise = Exercise.objects.filter(user=request.user).filter(name_of_exercise=exercise_name).first()
@@ -28,11 +28,9 @@ def graphing(request):
     except Exercise.DoesNotExist:
         page_title = "No Data Found"
 
-
-
-
     return render(request, 'graphing.html', context={'graph_data':datapoints, 'page_title':page_title})    
-                    
+
+
 @login_required(login_url='/accounts/login/')
 def overview(request):
     context = {}

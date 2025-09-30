@@ -58,11 +58,11 @@ p {
     margin: 20px;
     padding: 0; 
     display: flex; /* Use flexbox for horizontal alignment */
+    
 }
 
 .navbar-nav li {
     margin: 0;
-    
 }
 
 
@@ -73,6 +73,7 @@ p {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    transition: color 0.3s, text-decoration 0.3s;
 
 }
 .navbar-nav button {
@@ -82,20 +83,25 @@ p {
   font-size: 17px;
   color: white;
   cursor: pointer;
+  transition: color 0.3s, text-decoration 0.3s;
 }
+
+
+/* Change the color of links on hover */
+.navbar-nav a:hover {
+    opacity: 1;
+    color: lightblue;
+    text-decoration: underline;
+
+}
+
 
 .navbar-nav button:hover {
   color: lightblue;
   text-decoration: underline;
+  opacity: 1;
 
 }
-
-/* Change the color of links on hover */
-.navbar-nav a:hover {
-    color: lightblue;
-    text-decoration: underline;
-}
-
 .form-container {
     margin: 0 auto;
     list-style: none;
@@ -208,8 +214,12 @@ p {
     font-weight: bold;
     display: block;
     margin-top: 15px;
-}
 
+}
+.auth-form label.required::after {
+    content: ' *';
+    color: red;
+}
 .auth-form input[type="submit"] {
     background-color: #77a5ef;
     color: #333;
@@ -225,6 +235,7 @@ p {
 .auth-form input[type="submit"]:hover {
     background-color: #5f93e1;
 }
+
 .signup {
   background: none;
   border: none;
@@ -232,4 +243,26 @@ p {
   font-size: 17px;
   color: #333;
   cursor: pointer;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #77a5ef;
+  color: white;
+  
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

@@ -18,27 +18,20 @@
 
             
                 <li>
-                    <a href="{% url 'index' %}">Home</a>
+                    <a class="menu" href="{% url 'index' %}">Home</a>
                 </li>
                 <li>
-                    <a href="{% url 'overview' %}">Overview</a>
+                    <a class="menu"  href="{% url 'overview' %}">Overview</a>
                 </li>
                 <li>
-                    <a href="{% url 'workout' %}">Add Workout</a>
+                    <a class="menu" href="{% url 'workout' %}">Add Workout</a>
                 </li>
                 <li>
-                    <a> 
-                        {%if user.is_authenticated %}
-                            <form action="{% url 'logout' %}" method="post">
+                     <a class="menu">
+                    <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit">Log Out</button>
-                            </form>
-                        {% else %}
-                            <form action="{% url 'login' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Login</button>
-                            </form>
-                        {%endif%}
+                            <button type="submit">Logout</button>
+                    </form>
                     </a>
                 </li>
             </ul>

@@ -1,0 +1,1 @@
+Virtualenv location: /Users/reecelock/.local/share/virtualenvs/coreapp-dTRbhkeH

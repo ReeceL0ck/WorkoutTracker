@@ -10,12 +10,15 @@ This is a work in progess weight lifting tracking app written in django.\
 
 # TODO
 There is a lot of issues and features still needed to be added ( Just a 1 man project )
+
 - Think of a actual name
 - Think of a design for the site 
 - Implement css for login/signup [ DONE ]
     - Can be redesigned when a style is picked 
 - Add change forgot password/change password
 - Redo the models to link with 1 user so each user can track progress rather than 1 [ DONE ]
+- Fix graphing so that the ranges match 
 - Fix the graphing endpoint at /tracker/graphing and add it to overview
 - Create an actual homepage
-
+- Redo the graghping using detroit ( python impementation od d3js )
+    - this should massively reduce loading time for /grahping

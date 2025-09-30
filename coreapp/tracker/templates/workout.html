@@ -1,6 +1,7 @@
 {%extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
 <!--      -->
 <form action = "" method = "post" onsubmit="alert_completion()">
     {% csrf_token %}
